@@ -67,9 +67,6 @@ app.use(express.urlencoded({extended : false}));
 //parse json
 app.use(express.json());
 
-// serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
-
 //get request
 app.get('/', (req, res) => {
     res.send('<h1>This is the home page</h1>');

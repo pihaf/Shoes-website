@@ -49,8 +49,6 @@ passport.deserializeUser(async (id, done) => {
   
 // configure routes
 app.use('/auth', authRouter);
-
-//include every routers
 app.use('/api/users', usersRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/brands', brandsRouter);
@@ -66,18 +64,20 @@ app.use(morgan('tiny'));
 app.use(express.urlencoded({extended : false}));
 //parse json
 app.use(express.json());
+//serve html, css, img
+app.use(express.static(path.join(__dirname, 'views', 'public')));
 
 //get request
 app.get('/', (req, res) => {
-    res.send('<h1>This is the home page</h1>');
+    res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
 app.get('/about', (req, res) => {
     res.send('<h1>About page<\h1>');
 });
 
-app.get('/contacts', (req, res) => {
-    res.send('<h1>Contacts page<\h1>');
+app.get('/contact', (req, res) => {
+    res.send('<h1>Contact page<\h1>');
 });
 
 app.listen(port, () => {

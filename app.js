@@ -4,6 +4,7 @@ const path = require('path');
 const session = require('express-session');
 const passport = require('passport');
 const morgan = require('morgan');
+const cors = require('cors');
 const { User } = require('./models/users');
 require('./models/DB');
 
@@ -58,6 +59,8 @@ app.use('/api/inventory', inventoryRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/orders', ordersRouter);
 
+//enable CORS for all routes
+app.use(cors());
 //middleware for logging out request info
 app.use(morgan('tiny'));
 //parse form data
@@ -66,6 +69,14 @@ app.use(express.urlencoded({extended : false}));
 app.use(express.json());
 //serve html, css, img
 app.use(express.static(path.join(__dirname, 'views', 'public')));
+
+// Set the MIME type for JavaScript files
+app.use((req, res, next) => {
+    if (req.url.endsWith('.js')) {
+      res.type('text/javascript');
+    }
+    next();
+  });
 
 //get request
 app.get('/', (req, res) => {

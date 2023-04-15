@@ -13,7 +13,7 @@ fetch('http://localhost:3000/api/products')
     const pro = document.createElement('div');
     pro.className = 'pro';
     const img = document.createElement('img');
-    img.src = `/products/${product.image_url}`;
+    img.src = `${product.image_url}`;
     img.alt = product.name;
     const a = document.createElement('a');
     a.href = '#';

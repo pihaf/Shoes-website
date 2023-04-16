@@ -8,15 +8,11 @@
     <title>E-Commerce Website</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 
-    <link rel="stylesheet" href="public/style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <section id="header">
-        <a href="index.html""><img src="logo-transparent.png" class="logo" alt="walkrags"></a>
-
-        {{> navbar}}
-    </section>
+    {{> header}}
 
     <section class="blog-header" id="page-header">
         <h2>#readmore</h2>
@@ -26,7 +22,7 @@
     <section id="blog">
         <div class="blog-box">
             <div class="blog-img">
-                <img src="public/resource/Blog/b1.jpg" alt="">
+                <img src="./public/resource/Blog/b1.jpg" alt="">
             </div>
             <div class="blog-details">
                 <h4>The Next-Gen Of Sneaker Is Here</h4>
@@ -37,7 +33,7 @@
         </div>
         <div class="blog-box">
             <div class="blog-img">
-                <img src="public/resource/Blog/b2.jpg" alt="">
+                <img src="./public/resource/Blog/b2.jpg" alt="">
             </div>
             <div class="blog-details">
                 <h4>The Next-Next-Gen Of Sneaker Is Here</h4>
@@ -48,7 +44,7 @@
         </div>
         <div class="blog-box">
             <div class="blog-img">
-                <img src="public/resource/Blog/b3.jpg" alt="">
+                <img src="./public/resource/Blog/b3.jpg" alt="">
             </div>
             <div class="blog-details">
                 <h4>The Next-Next-Next-Gen Of Sneaker Is Here</h4>
@@ -59,7 +55,7 @@
         </div>
         <div class="blog-box">
             <div class="blog-img">
-                <img src="public/resource/Blog/b4.jpg" alt="">
+                <img src="./public/resource/Blog/b4.jpg" alt="">
             </div>
             <div class="blog-details">
                 <h4>The Next-Next-Next-Gen Of Sneaker Is Here</h4>
@@ -88,47 +84,7 @@
         </div>
     </section>
 
-    <footer class="section-p1">
-        <div class="col">
-            <img class="logo" src="public/resource/logo-transparent.png" alt="logo">
-            <h4>Contact</h4>
-            <p><strong>Address:</strong> asdasdsadasdasdas</p>
-            <p><strong>Phone:</strong> asdasdsadasdasdas</p>
-            <p><strong>Hours:</strong> asdasdsadasdasdas</p>
-            <div class="follow">
-                <h4>Follow us</h4>
-                <div class="icon">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-pinterest-p"></i>
-                    <i class="fab fa-youtube"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <h4>About</h4>
-            <a href="#">About Us</a>
-            <a href="#">Delivery Information</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Contact Us</a>
-        </div>
-
-        <div class="col">
-            <h4>My Account</h4>
-            <a href="#">Sign In</a>
-            <a href="#">View Cart</a>
-            <a href="#">My Wishlist</a>
-            <a href="#">Track My Oder</a>
-            <a href="#">Help</a>
-        </div>
-
-        <div class="copyright">
-            <p>© 2023 Walkrags, Inc - All Rights Reserved</p>
-        </div>
-    </footer>
+    {{> footer}}
     <script src="script.js"></script>
 </body>
 

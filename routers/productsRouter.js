@@ -4,12 +4,12 @@ const router = express.Router();
 const productController = require('../controllers/productsController');
 
 //get request
-router.get('/', productController.getAllProducts);
 router.get('/:id', productController.getProductById);
 router.get('/brand/:brand', productController.getProductByBrand);
 router.get('/category/:category', productController.getProductByCategory);
 router.get('/name/:name', productController.getProductByName);
 router.get('/gender/:gender', productController.getProductByGender);
+router.get('/', productController.getAllProducts);
 
 //post request
 router.post('/', productController.createProduct);

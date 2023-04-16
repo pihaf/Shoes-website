@@ -4,12 +4,12 @@ const router = express.Router();
 const cartController = require('../controllers/cartController');
 
 //get request
+router.get('/api/:userId', cartController.getCartByUser);
 router.get('/cart', (req, res) => {
   const user = req.user;
   res.status(200).render('cart', { title: 'Cart', user });
 });
 
-router.get('/api/:userId', cartController.getCartByUser);
 
 //post request
 router.post('/api/:userId/items', cartController.createCartItem);

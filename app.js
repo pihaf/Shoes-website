@@ -123,6 +123,7 @@ app.use('/api/orders', ordersRouter);
 app.use('/', homeRouter);
 app.use('/', shopRouter);
 app.use('/', aboutRouter);
+app.use('/', blogRouter);
 app.use('/', contactRouter);
 app.use('/', sproductRouter);
 app.use('/', cartRouter);

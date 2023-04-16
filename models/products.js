@@ -24,6 +24,10 @@ const Product = sequelize.define('Product', {
     image_url: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    gender: {
+      type: DataTypes.STRING(10),
+      allowNull: false
     }
 }, {
     timestamps: false,

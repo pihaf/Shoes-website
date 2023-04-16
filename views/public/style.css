@@ -157,7 +157,7 @@ body {
 
 /* Home Page */
 #hero {
-    background-image: url("src/hero4.png");
+    background-image: url("/hero4.png");
     height: 90vh;
     width: 100%;
     background-size: cover;
@@ -325,7 +325,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-image: url("src/banner.png");
+    background-image: url("/banner.png");
     width: 100%;
     height: 32vh;
     background-size: cover;
@@ -382,7 +382,7 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    background-image: url("src/banner/b1.jpg");
+    background-image: url("./banner/b1.jpg");
     min-width: 580px;
     height: 40vh;
     background-size: cover;
@@ -427,7 +427,7 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    background-image: url("./");
+    background-image: url("./banner/Vector\ Smart\ Object.png");
     background-repeat: no-repeat;
     background-position: 20% 30%;
     background-color: #041e42;
@@ -543,7 +543,7 @@ footer .copyright {
 /* Shop Page */
 
 #page-header {
-    background-image: url("src/banner/5707510.png");
+    background-image: url("./banner/5707510.png");
     width: 100%;
     height: 40vh;
     background-size: cover;

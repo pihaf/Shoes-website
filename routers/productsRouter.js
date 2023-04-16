@@ -9,6 +9,7 @@ router.get('/:id', productController.getProductById);
 router.get('/brand/:brand', productController.getProductByBrand);
 router.get('/category/:category', productController.getProductByCategory);
 router.get('/name/:name', productController.getProductByName);
+router.get('/gender/:gender', productController.getProductByGender);
 
 //post request
 router.post('/', productController.createProduct);

@@ -16,33 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `payments`
+-- Table structure for table `categories`
 --
 
-DROP TABLE IF EXISTS `payments`;
+DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `payments` (
+CREATE TABLE `categories` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `order_id` int DEFAULT NULL,
-  `payment_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `amount` decimal(10,2) NOT NULL,
-  `payment_method` varchar(255) NOT NULL,
-  `transaction_id` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `order_id` (`order_id`),
-  CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `payments`
+-- Dumping data for table `categories`
 --
 
-LOCK TABLES `payments` WRITE;
-/*!40000 ALTER TABLE `payments` DISABLE KEYS */;
-INSERT INTO `payments` VALUES (1,1,'2023-04-03 15:44:13',270.00,'Credit Card','1234567890'),(2,2,'2023-04-03 15:44:13',400.00,'PayPal','0987654321');
-/*!40000 ALTER TABLE `payments` ENABLE KEYS */;
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'Running'),(2,'Basketball'),(3,'Soccer'),(4,'Casual'),(8,'Tennis'),(9,'Lifestyle');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-15 14:39:18
+-- Dump completed on 2023-04-16 19:09:38

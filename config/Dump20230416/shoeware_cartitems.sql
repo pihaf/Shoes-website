@@ -16,27 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `brands`
+-- Table structure for table `cartitems`
 --
 
-DROP TABLE IF EXISTS `brands`;
+DROP TABLE IF EXISTS `cartitems`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `brands` (
+CREATE TABLE `cartitems` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `cart_id` int DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  `size` varchar(10) NOT NULL,
+  `quantity` int NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cart_id` (`cart_id`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `cartitems_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`),
+  CONSTRAINT `cartitems_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `brands`
+-- Dumping data for table `cartitems`
 --
 
-LOCK TABLES `brands` WRITE;
-/*!40000 ALTER TABLE `brands` DISABLE KEYS */;
-INSERT INTO `brands` VALUES (1,'Nike'),(2,'Adidas'),(3,'Puma'),(4,'Reebok'),(5,'Nike'),(6,'Adidas'),(7,'Puma'),(8,'Reebok'),(9,'New Balance');
-/*!40000 ALTER TABLE `brands` ENABLE KEYS */;
+LOCK TABLES `cartitems` WRITE;
+/*!40000 ALTER TABLE `cartitems` DISABLE KEYS */;
+INSERT INTO `cartitems` VALUES (1,1,1,'US 9',1,150.00),(2,1,3,'US 10',2,60.00),(3,2,2,'US 9',1,180.00),(4,2,4,'US 10',1,70.00);
+/*!40000 ALTER TABLE `cartitems` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-15 14:39:18
+-- Dump completed on 2023-04-16 19:09:38

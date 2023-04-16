@@ -53,7 +53,12 @@ require('./models/DB');
     Payment.belongsTo(Order, { foreignKey: 'order_id'});
 
 //importing routers
-const homeRouter = require('./routers/homeRouter')
+const homeRouter = require('./routers/homeRouter');
+const shopRouter = require('./routers/shopRouter');
+const blogRouter = require('./routers/blogRouter');
+const aboutRouter = require('./routers/aboutRouter');
+const contactRouter = require('./routers/contactRouter');
+const sproductRouter = require('./routers/sproductRouter');
 const usersRouter = require('./routers/usersRouter');
 const productsRouter = require('./routers/productsRouter');
 const brandsRouter = require('./routers/brandsRouter');
@@ -108,16 +113,26 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, 'views', 'partials'));
 
 // configure routes
-app.use('/', homeRouter);
-app.use('/', authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/brands', brandsRouter);
 app.use('/api/categories', categoriesRouter);
-app.use('/api/cart', cartRouter);
 app.use('/api/inventory', inventoryRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/orders', ordersRouter);
+app.use('/', homeRouter);
+app.use('/', shopRouter);
+app.use('/', aboutRouter);
+app.use('/', contactRouter);
+app.use('/', sproductRouter);
+app.use('/', cartRouter);
+app.use('/', authRouter);
+
+//define error handling middleware function
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
 //connect to database
 sequelize.authenticate()

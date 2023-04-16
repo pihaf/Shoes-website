@@ -786,6 +786,45 @@ footer .copyright {
     z-index: -9;
 }
 
+/* About Page */
+
+#page-header.about-header {
+    background-image: url("resource/banner/b3.png") ;
+    background-position: center;
+}
+
+#about-head {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+#about-head img {
+    width: 40%;
+    height: auto;
+}
+
+#about-head div {
+    padding-left: 40px;
+}
+
+#about-vid {
+    text-align: center;
+    margin: 50px auto 0 auto;
+}
+
+#about-vid .video {
+    margin-top: 30px;
+}
+
+#about-vid .video iframe {
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
 /* Contact Page */
 
 #contact-details {

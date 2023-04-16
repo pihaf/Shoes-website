@@ -3,10 +3,10 @@ const router = express.Router();
 
 const { activeHome, activeShop, activeBlog, activeAbout, activeContact } = require('../helpers/navbarUrlHelpers');
 
-router.get('/', (req, res) => {
+router.get('/blog', (req, res) => {
   const user = req.user;
-  res.status(200).render('index', { 
-    title: 'Home', 
+  res.status(200).render('blog', { 
+    title: 'Blog', 
     user,     
     activeHome: activeHome(req.originalUrl),
     activeShop: activeShop(req.originalUrl),

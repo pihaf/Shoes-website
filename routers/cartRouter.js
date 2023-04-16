@@ -4,15 +4,20 @@ const router = express.Router();
 const cartController = require('../controllers/cartController');
 
 //get request
-router.get('/:userId', cartController.getCartByUser);
+router.get('/api/:userId', cartController.getCartByUser);
+router.get('/cart', (req, res) => {
+  const user = req.user;
+  res.status(200).render('cart', { title: 'Cart', user });
+});
+
 
 //post request
-router.post('/:userId/items', cartController.createCartItem);
+router.post('/api/:userId/items', cartController.createCartItem);
 
 //put request
-router.put('/items/:id', cartController.updateCartItem);
+router.put('/api/items/:id', cartController.updateCartItem);
 
 //delete request
-router.delete('/items/:id', cartController.deleteCartItem);
+router.delete('/api/items/:id', cartController.deleteCartItem);
 
 module.exports = router;

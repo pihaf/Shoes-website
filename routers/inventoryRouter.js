@@ -4,9 +4,9 @@ const router = express.Router();
 const inventoryController = require('../controllers/inventoryController');
 
 //get request
-router.get('/', inventoryController.getAllInventory);
 router.get('/:id', inventoryController.getInventoryById);
 router.get('/product/:productId', inventoryController.getInventoryByProduct);
+router.get('/', inventoryController.getAllInventory);
 
 //post request
 router.post('/', inventoryController.createInventory);

@@ -4,8 +4,8 @@ const router = express.Router();
 const brandController = require('../controllers/brandsController');
 
 //get request
-router.get('/', brandController.getAllBrands);
 router.get('/:id', brandController.getBrandById);
+router.get('/', brandController.getAllBrands);
 
 //post request
 router.post('/', brandController.createBrand);

@@ -79,8 +79,18 @@ exports.getProductByName = async (req, res) => {
 
 exports.getProductByCategory = async (req, res) => {
   try {
-    const category = await Category.findOne({where: {name: req.params.category}})
+    const category = await Category.findOne({where: {name: req.params.category}});
     const products = await Product.findAll({ where: { categoryId: category.id } });
+    res.json(products);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+exports.getProductByGender = async (req, res) => {
+  try {
+    const products = await Product.findAll({ where: { gender: req.params.gender }});
     res.json(products);
   } catch (err) {
     console.error(err);

@@ -8,11 +8,11 @@ const router = express.Router();
 
 //configure register route
 router.get('/login', (req, res) => {
-  res.status(200).render("login");
+  res.status(200).render("login", { title: 'Login'});
 });
 
 router.get('/register', (req, res) => {
-  res.status(200).render("register");
+  res.status(200).render("register", { title: 'Register'});
 });
 
 router.get('/logout', (req, res) => {
@@ -71,10 +71,14 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-// configure logout route
+//configure logout route
 router.post('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/');
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  });
 });
 
 module.exports = router;

@@ -8,11 +8,7 @@ const router = express.Router();
 
 //configure register route
 router.get('/login', (req, res) => {
-  res.status(200).render("login", { title: 'Login'});
-});
-
-router.get('/register', (req, res) => {
-  res.status(200).render("register", { title: 'Register'});
+  res.status(200).render("login&register", { title: 'Login'});
 });
 
 router.get('/logout', (req, res) => {
@@ -26,29 +22,29 @@ router.get('/logout', (req, res) => {
 
 router.post('/register', async (req, res) => {
   console.log(req.body)
-  const { name, email, username, password, phone_number, address } = req.body;
+  const { name, email, username, password, phone_number = 'N/A', address = 'N/A'} = req.body;
   try {
     //validate form data
     if (!name || !email || !username || !password || !phone_number || !address) {
-      return res.render('register', { title: 'Register', error: 'Please fill in all fields.' });
+      return res.render('login&register', { registerErr: 'Please fill in all fields.' });
     }
     //check if user with same username already exists
     const existingUser = await User.findOne({ where: { username } });
     if (existingUser) {
-      return res.render('register', { title: 'Register', error: 'Username already taken.' });
+      return res.render('login&register', { registerErr: 'Username already taken.' });
     }
     //create new user
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ name, email, username, password: hashedPassword, phone_number, address });
     req.login(user, err => {
       if (err) {
-        return res.render('register', { title: 'Register', error: 'Error logging in.' });
+        return res.render('login&register', { registerErr: 'Error logging in.' });
       }
       res.redirect('/');
     });
   } catch (err) {
     console.error(err);
-    return res.render('register', { title: 'Register', error: 'Error registering user.' });
+    return res.render('login&register', { registerErr: 'Error registering user.' });
   }
 });
 
@@ -59,7 +55,8 @@ router.post('/login', (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      return res.render('login', { title: 'Login', error: 'Invalid username or password.' });
+      console.log(info.message); //debug statement
+      return res.render('login&register', { error: 'Invalid username or password.' });
     }
     req.logIn(user, (err) => {
       if (err) {

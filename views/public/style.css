@@ -571,6 +571,15 @@ footer .copyright {
     font-weight: 900;
 }
 
+#pagination a.active {
+    text-decoration: none;
+    background-color: lightblue;
+    padding: 15px;
+    border-radius:4px;
+    color: white;
+    font-weight: 900;
+}
+
 #pagination a i {
     font-size: 16px;
     font-weight: 600;

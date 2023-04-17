@@ -98,6 +98,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 //serve html, css, img
 app.use(express.static(path.join(__dirname, 'views', 'public')));
+app.use('/node_modules', express.static('node_modules'));
 
 //set the MIME type for JavaScript files
 app.use((req, res, next) => {

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Website</title>
+    <title>{{title}}</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 
     <link rel="stylesheet" href="./style.css">
@@ -21,8 +21,8 @@
     </section>
 
     <section id="product1" class="section-p1">
-        <div class="pro-container">
-            <div class="pro" onclick="window.location.href='/sproduct'">
+        <div class="pro-container product-list">
+            {{!-- <div class="pro" onclick="window.location.href='/sproduct'">
                 <img src="./products/Air Jordan 1 Elevate High.png" alt="">
                 <div class="des">
                     <span>nike</span>
@@ -198,7 +198,7 @@
                     <h4>Price</h4>
                 </div>
                 <a href="#"><i class="fas fa-shopping-cart cart-icon"></i></a>
-            </div>
+            </div> --}}
         </div>
     </section>
 
@@ -207,16 +207,6 @@
         <a href="#">2</a>
         <a href="#">3</a>
         <a href="#"><i class="fas fa-long-arrow-alt-right"></i></a>
-    </section>
-    <section id="newsletter" class="section-p1" class="section-m1">
-        <div class="newstext">
-            <h4>Sign up for Newsletter</h4>
-            <p>description title and <span>highlight</span></p>
-        </div>
-        <div class="form">
-            <input type="text" placeholder="Enter your email address">
-            <button class="normal">Sign Up</button>
-        </div>
     </section>
 
     {{> footer}}

@@ -23,7 +23,7 @@ productLists.forEach(productList => {
         a.appendChild(cartIcon);
         const des = document.createElement('div');
         des.className = 'des';
-        // Update brand and category information
+        //update brand and category information
         const brand = product.Brand.name;
         const category = product.Category.name;
         des.innerHTML = `

@@ -7,7 +7,7 @@ const { activeHome, activeShop, activeBlog, activeAbout, activeContact } = requi
 router.get('/shop', (req, res) => {
   const user = req.user;
   res.status(200).render('shop', { 
-    title: 'Shop', 
+    title: 'Products', 
     user,     
     activeHome: activeHome(req.originalUrl),
     activeShop: activeShop(req.originalUrl),

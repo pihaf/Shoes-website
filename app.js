@@ -58,7 +58,7 @@ const shopRouter = require('./routers/shopRouter');
 const blogRouter = require('./routers/blogRouter');
 const aboutRouter = require('./routers/aboutRouter');
 const contactRouter = require('./routers/contactRouter');
-const sproductRouter = require('./routers/sproductRouter');
+const productdetailsRouter = require('./routers/product-detailsRouter');
 const usersRouter = require('./routers/usersRouter');
 const productsRouter = require('./routers/productsRouter');
 const brandsRouter = require('./routers/brandsRouter');
@@ -115,18 +115,18 @@ hbs.registerPartials(path.join(__dirname, 'views', 'partials'));
 
 // configure routes
 app.use('/api/users', usersRouter);
-app.use('/api/products', productsRouter);
 app.use('/api/brands', brandsRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/inventory', inventoryRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/', homeRouter);
+app.use('/', productsRouter);
 app.use('/', shopRouter);
 app.use('/', aboutRouter);
 app.use('/', blogRouter);
 app.use('/', contactRouter);
-app.use('/', sproductRouter);
+app.use('/', productdetailsRouter);
 app.use('/', cartRouter);
 app.use('/', authRouter);
 

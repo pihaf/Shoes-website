@@ -14,12 +14,27 @@ exports.getAllProducts = async (req, res) => {
   }
 };
 
+// exports.getProductById = async (req, res) => {
+//   try {
+//     const product = await Product.findByPk(req.params.id);
+//     res.json(product);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// };
+
 exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findByPk(req.params.id);
-    res.json(product);
+    if (product) {
+      const user = req.user;
+      res.status(200).render('product-details', { title: 'Product details', user, product });
+    } else {
+      res.status(404).send('Product not found');
+    }
   } catch (err) {
-    console.error(err);
+    console.log(err);
     res.status(500).json({ message: 'Internal server error' });
   }
 };

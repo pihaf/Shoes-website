@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Website</title>
+    <title>Your cart</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 
     <link rel="stylesheet" href="./style.css">
@@ -22,29 +22,46 @@
     <section id="cart" class="section-p1">
         <table width="100%">
             <thead>
-                <tr>
-                    <td>Remove</td>
-                    <td>Image</td>
-                    <td>Product</td>
-                    <td>Price</td>
-                    <td>Quantity</td>
-                    <td>Subtotal</td>
-                </tr>
+            <tr>
+                <td>Remove</td>
+                <td>Image</td>
+                <td>Product</td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Subtotal</td>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><a href="#"><i class="far fa-times-circle"></i></a></td>
-                    <td><img src="./products/Air Jordan 1 Elevate High.png"></td>
-                    <td>Air Jordan 1 Elevate High</td>
-                    <td>229k</td>
-                    <td><input type="number" value="1"></td>
-                </tr>
+            {{!-- {{#each cart}}
+            <tr>
+                <td><a href="#" class="remove-item" data-product-id="{{ this.id }}"><i class="far fa-times-circle"></i></a></td>
+                <td><img src="{{ this.image }}"></td>
+                <td>{{ this.name }}</td>
+                <td>{{ this.price }}</td>
+                <td><input type="number" value="{{ this.quantity }}" data-product-id="{{ this.id }}"></td>
+                <td>{{ this.subtotal }}</td>
+            </tr>
+            {{/each}} --}}
             </tbody>
         </table>
+        <div class="cart-summary">
+            <p>Number of items in cart: <span class="cart-items"></span></p>
+            <p>Cart total: <span class="cart-total"></span></p>
+        </div>
+        <button id="reset-cart">Delete Cart</button>
     </section>
 
+    <script src="/cartScript.js"></script>
+    <script>
+        function resetCart() {
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart(); 
+        }
+        const resetCartButton = document.querySelector('#reset-cart');
+        resetCartButton.addEventListener('click', resetCart);
+    </script>
     {{> footer}}
 
-    <script src="script.js"></script>
 </body>
 </html>

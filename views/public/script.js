@@ -5,41 +5,41 @@ productLists.forEach(productList => {
     .then(response => response.json())
     .then(data => {
       //loop through products and create div elements
+      let html = '';
       for (let i = 0; i < data.length; i++) {
         if (i === 8) {
           break; //limit to 8 products
         }
 
         const product = data[i];
-        const pro = document.createElement('div');
-        pro.className = 'pro';
-        const img = document.createElement('img');
-        img.src = `${product.image_url}`;
-        img.alt = product.name;
-        const a = document.createElement('a');
-        a.href = '#';
-        const cartIcon = document.createElement('i');
-        cartIcon.className = 'fas fa-shopping-cart cart-icon';
-        a.appendChild(cartIcon);
-        const des = document.createElement('div');
-        des.className = 'des';
-        //update brand and category information
-        const brand = product.Brand.name;
-        const category = product.Category.name;
-        des.innerHTML = `
-          <span>${brand}</span>
-          <h5>${product.name}</h5>
-          <p>${category}</p>
-          <p>${product.gender}</p>
-          <p>1 Color</p>
-          <h4>${product.price}</h4>
+        html += `
+          <div class="pro" data-product-id="${product.id}">
+            <img src="${product.image_url}" alt="${product.name}">
+            <a href="#">
+              <i class="fas fa-shopping-cart cart-icon"></i>
+            </a>
+            <div class="des">
+              <span>${product.Brand.name}</span>
+              <h5>${product.name}</h5>
+              <p>${product.Category.name}</p>
+              <p>${product.gender}</p>
+              <p>1 Color</p>
+              <h4>$${product.price}</h4>
+            </div>
+          </div>
         `;
-        a.appendChild(cartIcon);
-        pro.appendChild(img);
-        pro.appendChild(a);
-        pro.appendChild(des);
-        productList.appendChild(pro);
       }
+      productList.innerHTML = html;
+      const productElements = productList.querySelectorAll('.pro');
+      productElements.forEach(productElement => {
+        productElement.addEventListener('click', event => {
+          event.preventDefault();
+          //get the product ID from the data attribute
+          const productId = productElement.dataset.productId;
+          //redirect to the product details page with the product ID
+          window.location.href = `/products/${productId}`;
+        });
+      });
     })
     .catch(error => console.log(error));
 });

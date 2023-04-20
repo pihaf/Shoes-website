@@ -1,5 +1,5 @@
 # Shoes-website
- Steps to use database:
+ Steps to setup website and run locally: This website is only capable of running locally for now. To run the website locally, you have to snow how to import and setup the mySQL database. Here are two options of importing the database and setting up the website:
  
  Option 1:
 - Go to config folder and import the Dump file(which is the database) to mySQL

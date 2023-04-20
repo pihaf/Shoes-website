@@ -732,6 +732,11 @@ footer .copyright {
     background-image: url("resource/banner/b2.jpg");
 }
 
+#page-header.blog-header h2,
+#page-header.blog-header p {
+    color: black;
+}
+
 #blog {
     padding: 150px 150px 0 150px;
 }
@@ -805,7 +810,12 @@ footer .copyright {
 
 #page-header.about-header {
     background-image: url("resource/banner/b3.png") ;
-    background-position: center;
+    background-position: bottom;
+}
+
+#page-header.about-header h2,
+#page-header.about-header p {
+    color: black;
 }
 
 #about-head {

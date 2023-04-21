@@ -56,7 +56,7 @@
         function resetCart() {
             cart = [];
             localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart(); 
+            updateCart();
         }
         const resetCartButton = document.querySelector('#reset-cart');
         resetCartButton.addEventListener('click', resetCart);

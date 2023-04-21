@@ -19,4 +19,4 @@ const Brand = sequelize.define('Brand', {
     updatedAt: false
 });
 
-module.exports = Brand
+module.exports = Brand;

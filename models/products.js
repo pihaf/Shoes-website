@@ -35,4 +35,4 @@ const Product = sequelize.define('Product', {
     updatedAt: false
 });
 
-module.exports = Product
+module.exports = Product;

@@ -23,4 +23,4 @@ const CartItem = sequelize.define('CartItem', {
     updatedAt: false
 });
 
-module.exports = CartItem
+module.exports = CartItem;

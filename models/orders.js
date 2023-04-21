@@ -24,4 +24,4 @@ const Order = sequelize.define('Order', {
     updatedAt: false
 });
 
-module.exports = Order
+module.exports = Order;

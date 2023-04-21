@@ -23,4 +23,4 @@ const Inventory = sequelize.define('Inventory', {
     updatedAt: false
 });
 
-module.exports = Inventory
+module.exports = Inventory;

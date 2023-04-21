@@ -7,29 +7,30 @@ const sequelize = new Sequelize(dbConfig.NAME, dbConfig.USERNAME, dbConfig.PASSW
   port: dbConfig.PORT
 });
 
-//define the Payment model
-const Payment = sequelize.define('Payment', {
-    payment_date: {
+const Blog = sequelize.define('Blog', {
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    post_date: {
       type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW
+      defaultValue: Sequelize.NOW
     },
-    amount: {
-      type: DataTypes.DECIMAL(10, 2),
+    body: {
+      type: DataTypes.TEXT,
       allowNull: false
     },
-    payment_method: {
+    blog_url: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    transaction_id: {
-      type: DataTypes.STRING,
-      allowNull: false
+    image_url: {
+      type: DataTypes.STRING
     }
-}, {
+  }, {
     timestamps: false,
     createdAt: false,
     updatedAt: false
-});
+  });
 
-module.exports = Payment;
+  module.exports = Blog;

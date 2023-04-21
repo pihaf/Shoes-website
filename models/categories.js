@@ -19,4 +19,4 @@ const Category = sequelize.define('Category', {
     updatedAt: false
 });
 
-module.exports = Category
+module.exports = Category;

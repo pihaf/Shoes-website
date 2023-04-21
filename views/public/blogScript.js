@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const blogLists = document.getElementById('blog');
+    const blogLists = document.querySelectorAll('.blog-list');
     const pagination = document.getElementById('pagination');
   
     let currentPage = parseInt(localStorage.getItem('blogCurrentPage')) || 1;
@@ -13,6 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const blogsForPage = blogs.slice(startIndex, endIndex);
       let html = '';
       blogsForPage.forEach(blog => {
+        // Create a new Date object from the post_date string
+        const postDate = new Date(blog.post_date);
+        // Get the date components
+        const day = postDate.getDate();
+        const month = postDate.getMonth() + 1;
+        const year = postDate.getFullYear();
+        // Format the date string as "MM/DD/YYYY"
+        const formattedDate = `${month}/${day}/${year}`;
         html += `
           <div class="blog-box" data-blog-id="${blog.id}">
             <div class="blog-img">
@@ -21,24 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="blog-details">
                 <h4>${blog.title}</h4>
                 <p>${blog.body}</p>
-                <a href="#">CONTINUE READING</a>
+                <a href="${blog.blog_url}">CONTINUE READING</a>
             </div>
-            <h1>${blog.date}</h1>
+            <h1>${formattedDate}</h1>
           </div>
         `;
       });
       blogLists.forEach(blogList => {
         blogList.innerHTML = html;
-        const blogElements = blogList.querySelectorAll('.blog-box');
-        blogElements.forEach(blogElement => {
-          blogElement.addEventListener('click', event => {
-            event.preventDefault();
-            //get the blog ID from the data attribute
-            const blogId = blogElement.dataset.blogId;
-            //redirect to the blog details page with the blog ID
-            window.location.href = `/blogs/${blogId}`;
-          });
-        });
       });
 
       const pageLinks = pagination.querySelectorAll('a[data-page]');

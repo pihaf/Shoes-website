@@ -12,6 +12,7 @@ const { sequelize } = require('./models/DB');
 const User  = require('./models/users');
 const Brand  = require('./models/brands');
 const Product = require('./models/products');
+const Blog = require('./models/blogs');
 const Payment = require('./models/payments');
 const Order = require('./models/orders');
 const OrderItem = require('./models/orderItems');
@@ -114,13 +115,12 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, 'views', 'partials'));
 
 // configure routes
-app.use('/api/users', usersRouter);
 app.use('/api/brands', brandsRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/inventory', inventoryRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/orders', ordersRouter);
-app.use('/', homeRouter);
+app.use('/', usersRouter);
 app.use('/', productsRouter);
 app.use('/', shopRouter);
 app.use('/', aboutRouter);
@@ -129,6 +129,7 @@ app.use('/', contactRouter);
 app.use('/', productdetailsRouter);
 app.use('/', cartRouter);
 app.use('/', authRouter);
+app.use('/', homeRouter);
 
 //define error handling middleware function
 app.use((err, req, res, next) => {

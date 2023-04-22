@@ -18,6 +18,7 @@ router.post('/api/users', userController.createUser);
 
 //put request
 router.put('/api/users/:id', userController.updateUser);
+router.put('/api/users/password/:id', userController.updatePassword);
 
 //delete request
 router.delete('/:id', userController.deleteUser);

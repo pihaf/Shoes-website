@@ -22,10 +22,10 @@ router.get('/logout', (req, res) => {
 
 router.post('/register', async (req, res) => {
   console.log(req.body)
-  const { name, email, username, password, phone_number = 'N/A', address = 'N/A'} = req.body;
+  const { first_name, last_name = 'N/A', email, username, password, phone_number = 'N/A', address = 'N/A', others = 'N/A'} = req.body;
   try {
     //validate form data
-    if (!name || !email || !username || !password || !phone_number || !address) {
+    if (!first_name || !email || !username || !password || !phone_number || !address) {
       return res.render('login&register', { registerErr: 'Please fill in all fields.' });
     }
     //check if user with same username already exists
@@ -35,7 +35,7 @@ router.post('/register', async (req, res) => {
     }
     //create new user
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({ name, email, username, password: hashedPassword, phone_number, address });
+    const user = await User.create({ first_name, last_name, email, username, password: hashedPassword, phone_number, address, others });
     req.login(user, err => {
       if (err) {
         return res.render('login&register', { registerErr: 'Error logging in.' });

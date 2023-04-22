@@ -9,7 +9,11 @@ const sequelize = new Sequelize(dbConfig.NAME, dbConfig.USERNAME, dbConfig.PASSW
 
 //define the User model
 const User = sequelize.define('User', {
-    name: {
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    last_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -33,6 +37,10 @@ const User = sequelize.define('User', {
     },
     address: {
       type: DataTypes.STRING,
+      allowNull: false
+    },
+    others: {
+      type: DataTypes.TEXT,
       allowNull: false
     }
 }, {

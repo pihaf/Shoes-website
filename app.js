@@ -8,6 +8,52 @@ const morgan = require('morgan');
 const hbs = require('hbs');
 const cors = require('cors');
 const { sequelize } = require('./models/DB');
+
+//setting up the server
+const app = express();
+const port = 3000;
+
+//configure body-parser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+//parse json
+// app.use(express.json());
+
+//configure session middleware
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+}));
+  
+//configure passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+  
+//configure Passport
+require('./config/passport-config')(passport);
+
+//enable CORS for all routes
+app.use(cors());
+//middleware for logging out request info
+app.use(morgan('tiny'));
+//serve html, css, img
+app.use(express.static(path.join(__dirname, 'views', 'public')));
+app.use('/node_modules', express.static('node_modules'));
+
+//set the MIME type for JavaScript files
+app.use((req, res, next) => {
+    if (req.url.endsWith('.js')) {
+      res.type('text/javascript');
+    }
+    next();
+  });
+
+//set view engine
+app.set('view engine', 'hbs');
+// Register the partials directory
+hbs.registerPartials(path.join(__dirname, 'views', 'partials'));
+
 //import models
 const User  = require('./models/users');
 const Brand  = require('./models/brands');
@@ -70,57 +116,13 @@ const paymentsRouter = require('./routers/paymentsRouter');
 const ordersRouter = require('./routers/ordersRouter');
 const authRouter = require('./routers/authRouter');
 
-//setting up the server
-const app = express();
-const port = 3000;
-
-//configure session middleware
-app.use(session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: false
-}));
-  
-//configure passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
-  
-//configure Passport
-require('./config/passport-config')(passport);
-
-//enable CORS for all routes
-app.use(cors());
-//middleware for logging out request info
-app.use(morgan('tiny'));
-//configure body-parser
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-//parse json
-app.use(express.json());
-//serve html, css, img
-app.use(express.static(path.join(__dirname, 'views', 'public')));
-app.use('/node_modules', express.static('node_modules'));
-
-//set the MIME type for JavaScript files
-app.use((req, res, next) => {
-    if (req.url.endsWith('.js')) {
-      res.type('text/javascript');
-    }
-    next();
-  });
-
-//set view engine
-app.set('view engine', 'hbs');
-// Register the partials directory
-hbs.registerPartials(path.join(__dirname, 'views', 'partials'));
-
 // configure routes
+app.use('/', usersRouter);
 app.use('/api/brands', brandsRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/inventory', inventoryRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/orders', ordersRouter);
-app.use('/', usersRouter);
 app.use('/', productsRouter);
 app.use('/', shopRouter);
 app.use('/', aboutRouter);

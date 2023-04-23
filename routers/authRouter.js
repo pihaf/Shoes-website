@@ -26,19 +26,19 @@ router.post('/register', async (req, res) => {
   try {
     //validate form data
     if (!first_name || !email || !username || !password || !phone_number || !address) {
-      return res.render('login&register', { registerErr: 'Please fill in all fields.' });
+      return res.render('login&register', { title: 'Register', registerErr: 'Please fill in all fields' });
     }
     //check if user with same username already exists
     const existingUser = await User.findOne({ where: { username } });
     if (existingUser) {
-      return res.render('login&register', { registerErr: 'Username already taken.' });
+      return res.render('login&register', { title: 'Register', registerErr: 'Username already taken' });
     }
     //create new user
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ first_name, last_name, email, username, password: hashedPassword, phone_number, address, others });
     req.login(user, err => {
       if (err) {
-        return res.render('login&register', { registerErr: 'Error logging in.' });
+        return res.render('login&register', { title: 'Register', registerErr: 'Error logging in.' });
       }
       res.redirect('/');
     });
@@ -56,7 +56,7 @@ router.post('/login', (req, res, next) => {
     }
     if (!user) {
       console.log(info.message); //debug statement
-      return res.render('login&register', { error: 'Invalid username or password.' });
+      return res.render('login&register', { title: 'Login', error: 'Invalid username or password' });
     }
     req.logIn(user, (err) => {
       if (err) {

@@ -92,9 +92,14 @@
 									</div>
 								</div>
 							</div>
+
+							{{#if accountErr}}
+							    <div class="alert alert-danger" style="background-color:blue;color:red; font-size:12px">{{accountErr}}</div>
+            				{{/if}}
+
 							<div>
 								<button type="submit" class="btn btn-primary">Update</button>
-								<button type="button" class="btn btn-light">Cancel</button>
+								<button type="button" class="btn btn-light" onclick="resetForm()">Cancel</button>
 							</div>
 							</div>
 						</div>
@@ -126,9 +131,14 @@
 									</div>
 								</div>
 							</div>
+
+							{{#if passwordErr}}
+							    <div class="alert alert-danger" style="color:red; font-size:12px">{{passwordErr}}</div>
+            				{{/if}}
+
 							<div>
 							<button type="submit" class="btn btn-primary">Update</button>
-							<button type="button" class="btn btn-light">Cancel</button>
+							<button type="button" class="btn btn-light" onclick="resetForm()">Cancel</button>
 							</div>
 						</div>
 					</form>
@@ -226,6 +236,12 @@
 	</section>
 
 	<script>
+		function resetForm() {
+			document.getElementById("account-form").reset();
+			document.getElementById("password-form").reset();
+			document.getElementsByName("newPassword")[0].value = "";
+			document.getElementsByName("confirmNewPassword")[0].value = "";
+		}
 		document.querySelector('#account-form').addEventListener('submit', function(e) {
 			e.preventDefault();
 			var formData = new URLSearchParams(new FormData(this)); // create a URLSearchParams object
@@ -247,6 +263,7 @@
 			})
 			.catch(error => {
 				// Handle error
+				console.error(error);
 			});
 		});
 

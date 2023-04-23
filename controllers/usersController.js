@@ -37,6 +37,13 @@ exports.updateUser = async (req, res) => {
     console.log(user);
     console.log("Req.body from controller:");
     console.log(req.body);
+
+    if (!req.body.first_name || !req.body.last_name || !req.body.email || !req.body.username || !req.body.phone_number || !req.body.address) { 
+        const accountErr = 'Please provide all fields';
+        console.log('accountErr:', accountErr); 
+        return res.status(400).render('accountSettings', {title: 'Profile', accountErr: accountErr});
+    }
+
     await user.update({
       first_name: req.body.first_name,
       last_name: req.body.last_name,
@@ -61,7 +68,8 @@ exports.updatePassword = async (req, res) => {
     console.log(req.body);
 
     if (!req.body.newPassword || !req.body.confirmNewPassword) {
-      return res.status(400).json({ message: 'Please provide new password, and confirm new password' });
+      //return res.status(400).json({ message: 'Please provide new password, and confirm new password' });
+      return res.status(400).render('accountSettings', {title:'Profile', passwordErr: 'Please provide new password and confirmation password'});
     }
 
     //check if the old password matches
@@ -75,7 +83,8 @@ exports.updatePassword = async (req, res) => {
 
     //check if the new password and confirm new password match
     if (req.body.newPassword !== req.body.confirmNewPassword) {
-      return res.status(400).json({ message: 'New password and confirm new password do not match' });
+      //return res.status(400).json({ message: 'New password and confirm new password do not match' });
+      return res.status(400).render('accountSettings', {title:'Profile', passwordErr: 'New password and confirm new password do not match'});
     }
 
     //hash the new password and update the user password

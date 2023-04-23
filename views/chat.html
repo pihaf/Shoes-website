@@ -1,0 +1,283 @@
+<!-- <!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Sample Plugin Chat</title> 
+        <style> 
+        #chat-container { 
+            position: fixed; 
+            bottom: 0; 
+            right: 0; 
+            width: 300px; 
+            height: 400px; 
+            background-color: #f1f1f1; 
+            border: 1px solid #ddd; 
+            overflow-y: scroll; 
+            transition: height 0.5s; 
+        }
+
+        #chat-container.minimized {
+            height: 30px;
+        }
+    
+        #chat-messages {
+            padding: 10px;
+        }
+    
+        #chat-input {
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+    
+        #chat-input input[type="text"] {
+            width: 100%;
+            border: 1px solid #ddd;
+            padding: 5px;
+            margin-right: 10px;
+        }
+    
+        #chat-input button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+    </head> 
+    <body> 
+        <div id="chat-container"> 
+            <button id="toggle-chat">-</button> 
+            <div id="chat-messages"></div> <div id="chat-input"> 
+                <input type="text" id="chat-message" placeholder="Type your message..."> 
+                <button id="send-message">Send</button> 
+            </div> 
+        </div>
+
+    <script>
+        // Function to create a new chat message element
+        function createChatMessageElement(message) {
+            var chatMessageElement = document.createElement("div");
+            chatMessageElement.classList.add("chat-message");
+            chatMessageElement.textContent = message;
+            return chatMessageElement;
+        }
+    
+        // Function to add a new chat message to the chat container
+        function addChatMessage(message) {
+            var chatMessagesElement = document.getElementById("chat-messages");
+            var chatMessageElement = createChatMessageElement(message);
+            chatMessagesElement.appendChild(chatMessageElement);
+            chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
+        }
+    
+        // Function to send a chat message
+        function sendChatMessage() {
+            var chatMessageInput = document.getElementById("chat-message");
+            var message = chatMessageInput.value.trim();
+            if (message.length > 0) {
+                addChatMessage(message);
+                chatMessageInput.value = "";
+            }
+        }
+    
+        // Event listener for the send button
+        var sendButton = document.getElementById("send-message");
+        sendButton.addEventListener("click", function() {
+            sendChatMessage();
+        });
+    
+        // Event listener for the enter key in the chat input field
+        var chatMessageInput = document.getElementById("chat-message");
+        chatMessageInput.addEventListener("keydown", function(event) {
+            if (event.keyCode === 13) {
+                sendChatMessage();
+            }
+        });
+    
+        // Event listener for the toggle button
+        var toggleButton = document.getElementById("toggle-chat");
+        toggleButton.addEventListener("click", function() {
+            var chatContainer = document.getElementById("chat-container");
+            if (chatContainer.classList.contains("minimized")) {
+                chatContainer.classList.remove("minimized");
+                toggleButton.textContent = "-";
+            } else {
+                chatContainer.classList.add("minimized");
+                toggleButton.textContent = "+";
+            }
+        });
+    
+        // Follow the user through pages
+        window.addEventListener("scroll", function() {
+            var chatContainer = document.getElementById("chat-container");
+            if (chatContainer) {
+                chatContainer.style.bottom = (window.innerHeight - chatContainer.offsetHeight + window.pageYOffset) + "px";
+            }
+        });
+    
+        // Reload the chat messages from local storage on page load
+        window.addEventListener("load", function() {
+            var chatMessagesElement = document.getElementById("chat-messages");
+            if (chatMessagesElement) {
+                var chatMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+                for (var i = 0; i < chatMessages.length; i++) {
+                    var chatMessageElement = createChatMessageElement(chatMessages[i]);
+                    chatMessagesElement.appendChild(chatMessageElement);
+                }
+            }
+        });
+    
+        // Save the chat messages to local storage on page unload
+        window.addEventListener("unload", function() {
+            var chatMessagesElement = document.getElementById("chat-messages");
+            if (chatMessagesElement) {
+                var chatMessages = [];
+                var chatMessageElements = chatMessagesElement.querySelectorAll(".chat-message");
+                for (var i = 0; i < chatMessageElements.length; i++) {
+                    chatMessages.push(chatMessageElements[i].textContent);
+                }
+                localStorage.setItem("chatMessages", JSON.stringify(chatMessages));
+            }
+        });
+    </script>
+    </body> 
+    </html> -->
+
+    <!DOCTYPE html> 
+    <html> 
+        <head> 
+            <title>Sample Plugin Chat</title> 
+            <style> 
+            #chat-container { 
+                position: fixed; 
+                bottom: 0; 
+                right: 0; 
+                width: 300px; 
+                height: 400px; 
+                background-color: #f1f1f1; 
+                border: 1px solid #ddd; 
+                overflow-y: scroll; 
+                transition: height 0.5s; 
+            }
+
+            #chat-container.minimized {
+                height: 30px;
+            }
+        
+            #chat-messages {
+                padding: 10px;
+            }
+        
+            #chat-input {
+                padding: 10px;
+                border-top: 1px solid #ddd;
+            }
+        
+            #chat-input input[type="text"] {
+                width: 100%;
+                border: 1px solid #ddd;
+                padding: 5px;
+                margin-right: 10px;
+            }
+        
+            #chat-input button {
+                padding: 5px 10px;
+                background-color: lightblue;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+        
+            #toggle-chat {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 30px;
+                height: 30px;
+                background-color: #4CAF50;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        
+            #toggle-chat i {
+                display: none;
+            }
+        
+            #toggle-chat.minimized i {
+                display: inline-block;
+            }
+        
+            #chat-title {
+                background-color: lightblue;
+                color: #fff;
+                padding: 10px;
+                font-weight: bold;
+                text-align: center;
+            }
+        </style>
+        </head> 
+        <body> 
+            <div id="chat-container"> 
+                <div id="chat-title">Chat</div> 
+                <button id="toggle-chat" style="background-color: white;"><i class="fas fa-comment"></i></button> 
+                <div id="chat-messages"></div> 
+                <div id="chat-input"> 
+                    <input type="text" id="chat-message" placeholder="Type your message..."> 
+                    <button id="send-message">Send</button> 
+                </div> 
+            </div>
+
+        <script>
+            // Function to create a new chat message element
+            function createChatMessageElement(message) {
+                var chatMessageElement = document.createElement("div");
+                chatMessageElement.classList.add("chat-message");
+                chatMessageElement.textContent = message;
+                return chatMessageElement;
+            }
+        
+            // Function to add a new chat message to the chat container
+            function addChatMessage(message) {
+                var chatMessagesElement = document.getElementById("chat-messages");
+                var chatMessageElement = createChatMessageElement(message);
+                chatMessagesElement.appendChild(chatMessageElement);
+                chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
+            }
+        
+            // Function to send a new message
+            function sendMessage() {
+                var messageInputElement = document.getElementById("chat-message");
+                var message = messageInputElement.value;
+                if (message) {
+                    addChatMessage(message);
+                    messageInputElement.value = "";
+                }
+            }
+        
+            // Toggle chat container
+            var chatContainerElement = document.getElementById("chat-container");
+            var toggleChatElement = document.getElementById("toggle-chat");
+            toggleChatElement.addEventListener("click", function() {
+                chatContainerElement.classList.toggle("minimized");
+                toggleChatElement.classList.toggle("minimized");
+            });
+        
+            // Send message on "Enter" key press
+            var messageInputElement = document.getElementById("chat-message");
+            messageInputElement.addEventListener("keyup", function(event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+        
+            // Send message on "Send" button click
+            var sendMessageElement = document.getElementById("send-message");
+            sendMessageElement.addEventListener("click", sendMessage);
+        </script>
+        </body> 
+        </html>

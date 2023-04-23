@@ -26,11 +26,13 @@ CREATE TABLE `orders` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
   `order_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `shipped_date` date DEFAULT NULL,
+  `status` varchar(10) NOT NULL,
   `total` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +41,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,'2023-04-03 15:44:13',270.00),(2,2,'2023-04-03 15:44:13',400.00);
+INSERT INTO `orders` VALUES (1,1,'2023-04-03 15:44:13',NULL,'',270.00),(2,2,'2023-04-03 15:44:13',NULL,'',400.00),(3,3,'2023-04-23 12:15:13',NULL,'Pending',70.00),(4,3,'2023-04-23 12:27:08',NULL,'Pending',200.00),(5,3,'2023-04-23 13:39:57',NULL,'Pending',240.00),(6,3,'2023-04-23 13:42:16',NULL,'Pending',70.00),(7,3,'2023-04-23 13:43:39',NULL,'Pending',630.00),(8,3,'2023-04-23 13:51:01',NULL,'Pending',880.00),(9,3,'2023-04-23 13:53:48',NULL,'Pending',900.00),(10,3,'2023-04-23 13:59:23',NULL,'Pending',120.00),(11,3,'2023-04-23 14:05:34',NULL,'Pending',120.00),(12,3,'2023-04-23 14:08:36',NULL,'Pending',120.00),(13,3,'2023-04-23 14:09:53',NULL,'Pending',490.00),(14,3,'2023-04-23 14:15:27',NULL,'Pending',180.00),(15,3,'2023-04-23 14:17:16',NULL,'Pending',70.00),(16,3,'2023-04-23 14:33:09',NULL,'Pending',480.00),(17,3,'2023-04-23 14:43:34',NULL,'Pending',910.00);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-16 19:09:38
+-- Dump completed on 2023-04-24  1:03:01

@@ -24,14 +24,16 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `phone_number` varchar(20) NOT NULL,
   `email` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `others` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +42,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','','555-1234','johndoe@example.com','123 Main St, Anytown USA','password123'),(2,'Jane Smith','','555-5678','janesmith@example.com','456 Oak St, Anytown USA','password456'),(3,'Nam','nam','0123456789','namnguyenhai03@gmail.com','Ha Noi','$2b$10$JtBJ6UfXO3pXsbBXuIfFyeINNGyM/obPSuwzFydX7SxbAC7NmOYI6'),(4,'minh','minh','0123456789','fagraeg@greheao.com','Ha Noi','$2b$10$aUsBSx6eeNRd1bkX36tFauw8lh3UwWxM8XewnmRU7ldzKZvrFaK2C');
+INSERT INTO `users` VALUES (1,'John Doe','N/A','','555-1234','johndoe@example.com','123 Main St, Anytown USA','password123','N/A'),(2,'Jane Smith','N/A','','555-5678','janesmith@example.com','456 Oak St, Anytown USA','password456','N/A'),(3,'vcl','Nguyen','nam','0123456789','nam@gmail.com','Hello','$2b$10$VXORa88A1Tu0btswcx0/zeMohPMe6cCZUs5dA008er4dZjBLp1n0S','test dfoahgoiahrgaheoighoia'),(4,'minh','N/A','minh','0123456789','fagraeg@greheao.com','Ha Noi','$2b$10$aUsBSx6eeNRd1bkX36tFauw8lh3UwWxM8XewnmRU7ldzKZvrFaK2C','N/A'),(5,'Nam','N/A','nam2','N/A','21020223@vnu.edu.vn','N/A','$2b$10$jymR3xGBCb1SaH/mv/bOLuDlaEbmhjDquewF5pdfAmxsED9uJjAzi','N/A');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-16 19:09:38
+-- Dump completed on 2023-04-24  1:03:00

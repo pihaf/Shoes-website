@@ -105,6 +105,8 @@
                                 {{accountErr}}</div>
                             {{/if}}
 
+                            <div id="update-message" style="color:green; margin-bottom: 10px"></div>
+
                             <div>
                                 <button type="submit" class="btn btn-primary">Update</button>
                                 <button type="button" class="btn btn-light" onclick="resetForm()">Cancel</button>
@@ -142,6 +144,8 @@
                             {{#if passwordErr}}
                             <div class="alert alert-danger" style="color:red; font-size:12px">{{passwordErr}}</div>
                             {{/if}}
+
+                            <div id="update-message2" style="color:green; margin-bottom: 10px"></div>
 
                             <div>
                                 <button type="submit" class="btn btn-primary">Update</button>
@@ -246,6 +250,8 @@
     </section>
 
 	<script>
+        const updateMessage = document.getElementById("update-message");
+        const updateMessage2 = document.getElementById("update-message2");
 		function resetForm() {
 			document.getElementById("account-form").reset();
 			document.getElementById("password-form").reset();
@@ -274,9 +280,11 @@
 				var firstName = firstNameInput.value;
 				var nameHeader = document.querySelector('#name');
 				nameHeader.textContent = firstName;
+                updateMessage.innerHTML = "Account updated successfully!";
 			})
 			.catch(error => {
 				console.error(error);
+                updateMessage.innerHTML = "Failed to update account. Please try again later.";
 			});
 		});
 
@@ -298,9 +306,12 @@
                 .then(response => {
                     // Handle successful response
                     console.log("Successful");
+                    updateMessage2.innerHTML = "Password updated successfully!";
                 })
                 .catch(error => {
                     // Handle error
+                    console.error(error);
+                    updateMessage.innerHTML = "Failed to update password. Please try again later.";
                 });
         });
     </script>

@@ -1,0 +1,131 @@
+<style> 
+    #chat-container { 
+        position: fixed; 
+        bottom: 0; 
+        right: 0; 
+        width: 300px; 
+        height: 400px; 
+        background-color: #f1f1f1; 
+        border: 1px solid #ddd; 
+        overflow-y: scroll; 
+        transition: height 0.5s; 
+    }
+
+    #chat-container.minimized {
+        height: 30px;
+    }
+
+    #chat-messages {
+        padding: 10px;
+    }
+
+    #chat-input {
+        padding: 10px;
+        border-top: 1px solid #ddd;
+    }
+
+    #chat-input input[type="text"] {
+        width: 100%;
+        border: 1px solid #ddd;
+        padding: 5px;
+        margin-right: 10px;
+    }
+
+    #chat-input button {
+        padding: 5px 10px;
+        background-color: lightblue;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    #toggle-chat {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #toggle-chat i {
+        display: none;
+    }
+
+    #toggle-chat.minimized i {
+        display: inline-block;
+    }
+
+    #chat-title {
+        background-color: lightblue;
+        color: #fff;
+        padding: 10px;
+        font-weight: bold;
+        text-align: center;
+    }
+</style>
+
+<div id="chat-container" class="minimized"> 
+    <div id="chat-title">Chat</div> 
+    <button id="toggle-chat" class="minimized" style="background-color: white;"><i class="fas fa-comment"></i></button> 
+    <div id="chat-messages">Welcome to Walkrags! Type your message below.</div> 
+    <div id="chat-input"> 
+        <input type="text" id="chat-message" placeholder="Type your message..."> 
+        <button id="send-message">Send</button> 
+    </div> 
+</div>
+
+<script>
+    //function to create a new chat message element
+    function createChatMessageElement(message) {
+        var chatMessageElement = document.createElement("div");
+        chatMessageElement.classList.add("chat-message");
+        chatMessageElement.textContent = message;
+        return chatMessageElement;
+    }
+
+    //function to add a new chat message to the chat container
+    function addChatMessage(message) {
+        var chatMessagesElement = document.getElementById("chat-messages");
+        var chatMessageElement = createChatMessageElement(message);
+        chatMessagesElement.appendChild(chatMessageElement);
+        chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
+    }
+
+    //function to send a new message
+    function sendMessage() {
+        var messageInputElement = document.getElementById("chat-message");
+        var message = messageInputElement.value;
+        if (message) {
+            addChatMessage(message);
+            messageInputElement.value = "";
+        }
+    }
+
+    //toggle chat container
+    var chatContainerElement = document.getElementById("chat-container");
+    var toggleChatElement = document.getElementById("toggle-chat");
+    toggleChatElement.addEventListener("click", function() {
+        chatContainerElement.classList.toggle("minimized");
+        toggleChatElement.classList.toggle("minimized");
+    });
+
+    //send message on "Enter" key press
+    var messageInputElement = document.getElementById("chat-message");
+    messageInputElement.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+
+    //send message on "Send" button click
+    var sendMessageElement = document.getElementById("send-message");
+    sendMessageElement.addEventListener("click", sendMessage);
+</script>

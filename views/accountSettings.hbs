@@ -18,7 +18,7 @@
 						<div class="img-circle text-center mb-3">
 							<img src="./account_setting/img/user-avt.png" alt="Image" class="shadow"> <!-- avt -->
 						</div>
-						<h4 class="text-center">{{user.first_name}}</h4><!-- name -->
+						<h4 id="name" class="text-center">{{user.first_name}}</h4><!-- name -->
 					</div>
 					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical"> <!-- nav bar -->
 						<a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
@@ -51,7 +51,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>First Name</label>
-										<input type="text" class="form-control" name="first_name" value="{{user.first_name}}">
+										<input id="first-name-input" type="text" class="form-control" name="first_name" value="{{user.first_name}}">
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -256,11 +256,14 @@
 				body: formData.toString() // convert URLSearchParams object to string
 			})
 			.then(response => {
-				// Handle successful response
 				console.log("Successful");
+				//update the first name in the name header
+				var firstNameInput = document.querySelector('#first-name-input');
+				var firstName = firstNameInput.value;
+				var nameHeader = document.querySelector('#name');
+				nameHeader.textContent = firstName;
 			})
 			.catch(error => {
-				// Handle error
 				console.error(error);
 			});
 		});

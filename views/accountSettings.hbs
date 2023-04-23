@@ -6,8 +6,8 @@
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="./account_setting/css/accountStyle.css">
-</head>
+	<link rel="stylesheet" type="text/css" href="public/account_setting/css/accountStyle.css">
+</head>`
 <body>
 	<section class="py-5 my-5">
 		<div class="container">
@@ -43,10 +43,9 @@
 						</a>
 					</div>
 				</div>
-					<form id="account-form" method="POST" action="/api/users/{{user.id}}">
-						<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
-							<!-- Account settings panel -->
-							<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+					<form id="account-form" method="POST" action="/api/users/{{user.id}}"><!-- Account settings panel -->
+						<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
 							<h3 class="mb-4">Account Settings</h3>
 							<div class="row">
 								<div class="col-md-6">
@@ -100,7 +99,6 @@
 							<div>
 								<button type="submit" class="btn btn-primary">Update</button>
 								<button type="button" class="btn btn-light" onclick="resetForm()">Cancel</button>
-							</div>
 							</div>
 						</div>
 					</form>
@@ -175,7 +173,7 @@
 						</div>
 					</div>
 					<div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab"> <!-- Check lịch sử hoạt động-->
-						<h3 class="mb-4">Application Settings</h3> 
+						<h3 class="mb-4">Application Settings</h3>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
@@ -230,7 +228,7 @@
 							<button class="btn btn-light">Cancel</button>
 						</div>
 					</div>
-				</div>
+                </div>
 			</div>
 		</div>
 	</section>

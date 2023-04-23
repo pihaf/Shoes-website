@@ -4,26 +4,20 @@
   <li><a class="{{#if activeBlog}}active{{/if}}" href="/blog">Blog</a></li>
   <li><a class="{{#if activeAbout}}active{{/if}}" href="/about">About</a></li>
   <li><a class="{{#if activeContact}}active{{/if}}" href="/contact">Contact</a></li>
-  {{#if user}}
-<<<<<<< HEAD
-  <li><a href="/profile">User</a></li>
-=======
-    <li><a href="/profile">Settings</a></li>
-    <li><a href="/logout">Logout</a></li>
->>>>>>> 1f7133662af0ebccaa40c633ee760d7412f7684d
-  {{else}}
-  <li><a href="/login">Login</a></li>
-  {{/if}}
   <li><a href="/cart"><i class="fas fa-shopping-bag"></i></a></li>
+  {{#if user}}
   <li class="dropdown">
     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
       aria-haspopup="true" aria-expanded="false">
       <img src="/views/public/account_setting/img/user-avt.png" class="rounded shadow" style="width:20px">
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Account</a>
-      <a class="dropdown-item" href="#">Setting</a>
-      <a class="dropdown-item" href="#">Log out</a>
+      <a class="dropdown-item" href="/profile">Account</a>
+      <a class="dropdown-item" href="/profile">Setting</a>
+      <a class="dropdown-item" href="/logout">Log out</a>
     </div>
   </li>
+  {{else}}
+  <li><a href="/login">Login</a></li>
+  {{/if}}
 </ul>

@@ -9,6 +9,18 @@ const sequelize = new Sequelize(dbConfig.NAME, dbConfig.USERNAME, dbConfig.PASSW
 
 //define the OrderItem model
 const OrderItem = sequelize.define('OrderItem', {
+    product_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    order_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    size: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: false

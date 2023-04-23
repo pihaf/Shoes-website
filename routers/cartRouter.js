@@ -7,7 +7,9 @@ const cartController = require('../controllers/cartController');
 router.get('/api/:userId', cartController.getCartByUser);
 router.get('/cart', (req, res) => {
   const user = req.user;
-  res.status(200).render('cart', { title: 'Cart', user });
+  console.log("User from get /cart:");
+  console.log(user);
+  res.status(200).render('cart', { title: 'Cart', user: user });
 });
 
 

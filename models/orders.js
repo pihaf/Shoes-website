@@ -9,10 +9,22 @@ const sequelize = new Sequelize(dbConfig.NAME, dbConfig.USERNAME, dbConfig.PASSW
 
 //define the Order model
 const Order = sequelize.define('Order', {
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     order_date: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW
+    },
+    shipped_date: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     total: {
       type: DataTypes.DECIMAL(10, 2),

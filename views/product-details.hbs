@@ -42,9 +42,9 @@
             <h6>Home / {{ product.Category.name }} / {{ product.Brand.name }}</h6>
             <h4>{{ product.name }}</h4>
             <h2>{{ product.price }}$</h2>
-            <select>
-            <option>Select Size</option>
-            <option>XL</option>
+            <span>Select Size</span>
+            <select name="size" >
+            <option selected>XL</option>
             <option>XXL</option>
             <option>Small</option>
             <option>Large</option>
@@ -65,11 +65,13 @@
             const productPrice = '{{ product.price }}';
             const productImage = '{{ product.image_url }}';
             const productQuantity = document.querySelector('.single-pro-details input').value;
+            const productSize = document.querySelector('.single-pro-details select[name="size"]').value;
             const product = {
             id: productId,
             name: productName,
             price: productPrice,
             image: productImage,
+            size: productSize,
             quantity: productQuantity
             };
             console.log(product);

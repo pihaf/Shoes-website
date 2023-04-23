@@ -9,6 +9,10 @@ const sequelize = new Sequelize(dbConfig.NAME, dbConfig.USERNAME, dbConfig.PASSW
 
 //define the CartItem model
 const CartItem = sequelize.define('CartItem', {
+    size: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: false

@@ -40,7 +40,8 @@ app.use(morgan('tiny'));
 //serve html, css, img
 app.use(express.static(path.join(__dirname, 'views', 'public')));
 app.use('/node_modules', express.static('node_modules'));
-
+// Serve static files from the 'models' directory
+// app.use('/models', express.static('models'));
 //set the MIME type for JavaScript files
 app.use((req, res, next) => {
     if (req.url.endsWith('.js')) {
@@ -49,10 +50,16 @@ app.use((req, res, next) => {
     next();
   });
 
-//set view engine
+// Set the view engine to hbs
 app.set('view engine', 'hbs');
+
 // Register the partials directory
 hbs.registerPartials(path.join(__dirname, 'views', 'partials'));
+
+// Define the JSON.stringify helper
+hbs.registerHelper('stringify', function(obj) {
+  return JSON.stringify(obj);
+});
 
 //import models
 const User  = require('./models/users');

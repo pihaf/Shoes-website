@@ -32,35 +32,31 @@
             </tr>
             </thead>
             <tbody>
-            {{!-- {{#each cart}}
-            <tr>
-                <td><a href="#" class="remove-item" data-product-id="{{ this.id }}"><i class="far fa-times-circle"></i></a></td>
-                <td><img src="{{ this.image }}"></td>
-                <td>{{ this.name }}</td>
-                <td>{{ this.price }}</td>
-                <td><input type="number" value="{{ this.quantity }}" data-product-id="{{ this.id }}"></td>
-                <td>{{ this.subtotal }}</td>
-            </tr>
-            {{/each}} --}}
             </tbody>
         </table>
         <div class="cart-summary">
             <p>Number of items in cart: <span class="cart-items"></span></p>
             <p>Cart total: <span class="cart-total"></span></p>
         </div>
+        <div id="order-success-message" style="color:green"></div>
         <button id="reset-cart">Delete Cart</button>
+        <button id="complete-order" data-user='{{stringify user}}'>Complete order</button>
     </section>
 
     <script src="/cartScript.js"></script>
     <script>
-        function resetCart() {
-            cart = [];
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-        }
-        const resetCartButton = document.querySelector('#reset-cart');
-        resetCartButton.addEventListener('click', resetCart);
+        const completeOrderButton = document.querySelector('#complete-order');
+        completeOrderButton.addEventListener('click', () => {
+            const userData = completeOrderButton.getAttribute('data-user');
+            console.log("userData:");
+            console.log(userData);
+            const user = JSON.parse(userData);
+            console.log("user:");
+            console.log(user);
+            completeOrder(user);
+        });
     </script>
+
     {{> footer}}
 
 </body>

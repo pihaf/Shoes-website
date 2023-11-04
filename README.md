@@ -1,4 +1,6 @@
-# Shoes-website: Steps to setup website and run locally 
+# Shoes website: An ecommerce website about shoes
+ Notes: This website doesn't have any admin functions for now.
+# Steps to setup website and run locally 
  This website is only capable of running locally for now. To run the website locally, you have to snow how to import and setup the mySQL database. Here are two options of importing the database and setting up the website:
  
  Option 1:
